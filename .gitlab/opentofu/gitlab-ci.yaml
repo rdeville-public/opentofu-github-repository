@@ -35,6 +35,13 @@ OpenTofu Documentation:
       echo "ERROR - Please run \`terraform-docs ./\` and commit changes"
       exit 1
     fi
+  - |-
+    if git diff --name-only | grep -q README
+    then
+      echo "ERROR - Modules (and submodules) documentations are not up-to-date"
+      echo "ERROR - Please run \`terraform-docs ./\` and commit changes"
+      exit 1
+    fi
   rules:
   - if: $CI_PIPELINE_SOURCE =~ /(parent_pipeline|pipeline)/
     when: never
