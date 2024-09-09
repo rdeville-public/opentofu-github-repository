@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.4.0 (2024-09-09)
+
+### ✨ Minor
+
+  * ✨ Add deployment of action variables and secrets (!6) by Romain Deville ([`31349c1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/31349c1fcc537eae1d8f79614981108c4a3dab64))
+  * ✨ Add deployment of actions variables and secrets by Romain Deville ([`a736b29`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a736b294a68c7527c0da8107ed5c72c36fb86c1f)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example usage by Romain Deville ([`aeb19c8`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/aeb19c8abdda5f3ec64610cf255e4cd47972ea19)) 🔏
+
 ## v0.3.0 (2024-09-09)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`1c989b5`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/1c989b5dbfc81828098f7502c2271e3523afa11d)) 🔏
+  * 🔖 v0.3.0 (NO-CI) by Python Semantic Release [bot] ([`e935b8f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/e935b8f3402e0f3ed8b304e0c75bd2b85a370896))
 
 ## v0.2.0 (2024-09-09)
 
@@ -59,8 +71,6 @@
   * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`26f720f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/26f720fd39eade3a89b5dfc5bd346d47639c37be)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`a236e97`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a236e97a93067b6e48160392bb7664d9df3ca83f)) 🔏
-  * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`8de2cf1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/8de2cf1360ad9151a9c289dca369f76b48065271)) 🔏
-  * 🙈 Update gitignore from DGS by Romain Deville ([`b73cdcc`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/b73cdccd76908793658fcea712e8980c9a2d72d7)) 🔏
 
 ## v0.0.0 (2024-09-05)
 
