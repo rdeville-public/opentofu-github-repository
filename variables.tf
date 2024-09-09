@@ -591,7 +591,8 @@ variable "ruleset" {
 
   EOM
 
-  default = {}
+  nullable = false
+  default  = {}
 }
 
 # Repository Topics variables
@@ -600,5 +601,34 @@ variable "topics" {
   type        = list(string)
   description = "A list of topics to add to the repository"
 
-  default = []
+  nullable = false
+  default  = []
+}
+
+# Repository Actions Variables variables
+# ------------------------------------------------------------------------
+variable "actions_variables" {
+  # Key is the name of the action variable
+  type        = map(string)
+  description = <<-EOM
+  A map of string where key is the name of the variable and value is the value
+  of the actions Variables
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+# Repository Actions Secrets variables
+# ------------------------------------------------------------------------
+variable "actions_secrets" {
+  # Key is the name of the action variable
+  type        = map(string)
+  description = <<-EOM
+  A map of string where key is the name of the secret and value is the value
+  of the actions Secrets
+  EOM
+
+  nullable = false
+  default  = {}
 }
