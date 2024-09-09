@@ -103,6 +103,173 @@ module "repo" {
 }
 ```
 
+### Deploy Repo Branch Ruleset
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  ruleset = {
+    default-branch = {
+      target = "branch"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+          exclude = []
+        },
+      }
+      rules = {
+        creation = false
+        deletion = false
+        pull_request = {
+          required_approving_review_count = 1
+        }
+      }
+    }
+  }
+}
+```
+
+### Deploy Repo Tag Ruleset
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  ruleset = {
+    release-tag = {
+      target = "tag"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+        },
+      }
+      rules = {
+        update   = false
+        deletion = false
+        pattern = {
+          operator = "regex"
+          pattern  = "v*"
+          name     = "Limit version 'v*' tag creation"
+        }
+      }
+    }
+  }
+}
+```
+
+### Deploy Repo both Branch and Tag ruleset
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  ruleset = {
+    default-branch = {
+      target = "branch"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+        },
+      }
+      rules = {
+        creation = false
+        deletion = false
+        pull_request = {
+          required_approving_review_count = 1
+        }
+      }
+    }
+    any-other-branch = {
+      target = "branch"
+      condition = {
+        ref_name = {
+          include = ["~ALL"]
+        },
+      }
+      rules = {
+        pull_request = {
+          required_approving_review_count = 1
+        }
+        commit_author_email_pattern = {
+          name     = "Author should be @mycompany.tld"
+          operator = "ends_with"
+          pattern  = "@mycompany.tld"
+        }
+        committer_email_pattern = {
+          name     = "Commiter should be @mycompany.tld"
+          operator = "ends_with"
+          pattern  = "@mycompany.tld"
+        }
+      }
+    }
+    release-tag = {
+      target = "tag"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+        },
+      }
+      rules = {
+        update   = false
+        deletion = false
+        name_pattern = {
+          operator = "regex"
+          pattern  = "v*"
+          name     = "Limit version 'v*' tag creation"
+        }
+        commit_author_email_pattern = {
+          name     = "Author should be @mycompany.tld"
+          operator = "ends_with"
+          pattern  = "@mycompany.tld"
+        }
+        committer_email_pattern = {
+          name     = "Commiter should be @mycompany.tld"
+          operator = "ends_with"
+          pattern  = "@mycompany.tld"
+        }
+      }
+    }
+    any-other-tag = {
+      target = "tag"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+        },
+      }
+      rules = {
+        creation = false
+        update   = false
+        deletion = false
+        name_pattern = {
+          operator = "regex"
+          pattern  = "*"
+          name     = "Forbid any tag creation"
+        }
+      }
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -128,6 +295,8 @@ module "repo" {
 
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
+* [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
+  > Manage ruletsets of an organization.
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -196,6 +365,7 @@ string
 * [settings_pages](#settings_pages)
 * [settings_security_and_analysis](#settings_security_and_analysis)
 * [settings_topics](#settings_topics)
+* [ruleset](#ruleset)
 
 
 ##### `settings_homepage_url`
@@ -930,6 +1100,259 @@ List of string, optional, the list of topics of the repository.
 
   </div>
 </details>
+
+##### `ruleset`
+
+Map of object, where key is the name of the ruleset.
+Object define ruleset apply to branch ONLY, with the following arguments:
+* `target`: String, define the targe on which will apply the rules. Possible
+  values are `branch` and `tag`
+
+* `enforcement`: Optional, String, enforcement type, one of `disabled`,
+  `active` or `evaluate`. Default set to `active`.
+
+  Note: evaluate is currently only supported for owners of type organization.
+
+* `bypass_actors`: List of object, optional, the actors that can bypass the
+  rules in this ruleset, with the following arguments:
+
+  * `actor_id`: Number, the ID of the actor that can bypass a ruleset.
+
+  * `actor_type`: String, optional, the type of actor that can bypass a ruleset.
+
+    Can be one of: `RepositoryRole`, `Team`, `Integration`, `OrganizationAdmin`.
+
+    Note: at the time of writing this, the following actor types correspond to
+    the following actor IDs:
+
+      * OrganizationAdmin -> 1
+
+    RepositoryRole (This is the actor type, the following are the base
+    repository roles and their associated IDs.)
+
+      * maintain -> 2
+      * write -> 4
+      * admin -> 5
+
+  * `bypass_mode`: String, optional, when the specified actor can bypass the ruleset.
+    pull_request means that an actor can only bypass rules on pull requests.
+
+    Can be one of: `always`, `pull_request`. Default to `pull_request`.
+
+* `conditions`: Object, parameters for an organization ruleset condition.
+  `ref_name` is required alongside one of `repository_name` or `repository_id`.
+
+  * `ref_name`: Object, with the following arguments
+
+    * `exclude`: List of string, array of ref names or patterns to exclude.
+      The condition will not pass if any of these patterns match.
+    * `include`: List of string, array of ref names or patterns to include.
+       One of these patterns must match for the condition to pass.
+       Also accepts `~DEFAULT_BRANCH` to include the default branch or
+       `~ALL` to include all branches.
+
+* `rules`: Object, which define rules within the ruleset. Object
+  support following arguments:
+
+  * `creation`: Boolean, optional, only allow users with bypass permission to
+    create matching refs. Default to `true`
+
+  * `update`: Boolean, optional, only allow users with bypass permission to
+    update matching refs. Default `true`
+
+  * `deletion`: Boolean, optional, only allow users with bypass permissions to
+    delete matching refs. Default to `true`
+
+  * `non_fast_forward`: Prevent users with push access from force pushing
+    to branches. Default to `true`
+
+  * `required_linear_history`: Boolean, optional, prevent merge commits from
+     being pushed to matching branches. Default to `true`
+
+  * `required_signatures`: Boolean, optional, commits pushed to matching
+     branches must have verified signatures. Default to `true`
+
+  * `required_deployments`: List of string, optional, the environments that
+    must be successfully deployed to before branches can be merged.
+    Default to `[]`
+
+  * `name_pattern`: Object, parameters to be used for the branch_name_pattern
+    rule. This rule only applies to repositories within an enterprise, it
+    cannot be applied to repositories owned by individuals or regular
+    organizations. This object support following arguments:
+
+    * `name`: String How this rule will appear to users.
+    * `operator`: String, the operator to use for matching. Can be one of:
+      starts_with, ends_with, contains, regex.
+    * `pattern`: String, the pattern to match with.
+    * `negate`: Boolean, optional, If true, the rule will fail if the pattern
+      matches. Default `false`.
+
+  * `commit_author_email_pattern`: Object, optional, parameters to be used for
+    the commit_author_email_pattern rule. This rule only applies to
+    repositories within an enterprise, it cannot be applied to repositories
+    owned by individuals or regular organizations. This object support
+    following arguments:
+
+    * `name`: String How this rule will appear to users.
+    * `operator`: String, the operator to use for matching. Can be one of:
+      starts_with, ends_with, contains, regex.
+    * `pattern`: String, the pattern to match with.
+    * `negate`: Boolean, optional, If true, the rule will fail if the pattern
+      matches. Default `false`.
+
+  * `committer_email_pattern`: Object, optional, parameters to be used for
+    the commit_author_email_pattern rule. This rule only applies to
+    repositories within an enterprise, it cannot be applied to repositories
+    owned by individuals or regular organizations.This object support
+    following arguments:
+
+    * `name`: String How this rule will appear to users.
+    * `operator`: String, the operator to use for matching. Can be one of:
+      starts_with, ends_with, contains, regex.
+    * `pattern`: String, the pattern to match with.
+    * `negate`: Boolean, optional, If true, the rule will fail if the pattern
+      matches. Default `false`.
+
+  * `commit_message_pattern`: Object, optional, parameters to be used for the
+    commit_message_pattern rule. This rule only applies to repositories
+    within an enterprise, it cannot be applied to repositories owned by
+    individuals or regular organizations.This object support following
+    arguments:
+
+    * `name`: String How this rule will appear to users.
+    * `operator`: String, the operator to use for matching. Can be one of:
+      starts_with, ends_with, contains, regex.
+    * `pattern`: String, the pattern to match with.
+    * `negate`: Boolean, optional, If true, the rule will fail if the pattern
+      matches. Default `false`.
+
+  * `pull_request`: Object, optional, require all commits be made to a
+     non-target branch and submitted via a pull request before they can be
+     merged. This object support following arguments:
+
+    * `dismiss_stale_reviews_on_push`: Boolean, optional, new reviewable commits
+      pushed will dismiss previous pull request review approvals.
+      Defaults to `false`.
+
+    * `require_code_owner_review`: Boolean, optional, require an approving
+      review in pull requests that modify files that have a designated code
+      owner. Defaults to `true`.
+
+    * `require_last_push_approval`: Boolea, optional, whether the most recent
+      reviewable push must be approved by someone other than the person who
+      pushed it. Defaults to `false`.
+
+    * `required_approving_review_count`: Number, optional, the number of
+      approving reviews that are required before a pull request can be merged.
+      Defaults to `1`.
+
+    * `required_review_thread_resolution`: Boolea, optional, all conversations
+      on code must be resolved before a pull request can be merged.
+      Defaults to `false`.
+
+  * `required_status_checks`: list(Object), optional, choose which status checks
+    must pass before branches can be merged into a branch that matches this rule.
+    When enabled, commits must first be pushed to another branch, then merged
+    or pushed directly to a branch that matches this rule after status checks
+    have passed. This object support following arguments:
+
+    * `required_check`: Object, optional, status checks that are required.
+      Several can be defined.
+
+      * `context`: String, the status check context name that must be present
+        on the commit.
+
+      * `integration_id`: Number, optional, integration ID that this status
+        check must originate from.
+
+    * `strict_required_status_checks_policy`: Boolean, optioanl, whether pull
+       requests targeting a matching branch must be tested with the latest code.
+       This setting will not take effect unless at least one status check is enabled.
+       Defaults to false.
+
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    target      = string
+    enforcement = optional(string, "active")
+    bypass_actors = optional(list(object({
+      actor_id    = number
+      actor_type  = optional(string)
+      bypass_mode = optional(string, "pull_request")
+    })))
+    conditions = optional(object({
+      ref_name = object({
+        include = optional(list(string), [])
+        exclude = optional(list(string), [])
+      })
+    }))
+    rules = object({
+      creation                = optional(bool, true)
+      update                  = optional(bool, true)
+      deletion                = optional(bool, true)
+      non_fast_forward        = optional(bool, true)
+      required_linear_history = optional(bool, true)
+      required_signatures     = optional(bool, true)
+      required_deployments    = optional(list(string), [])
+      name_pattern = optional(object({
+        name     = string
+        operator = string
+        pattern  = string
+        negate   = optional(bool, false)
+      }))
+      commit_author_email_pattern = optional(object({
+        name     = string
+        operator = string
+        pattern  = string
+        negate   = optional(bool, false)
+      }))
+      committer_email_pattern = optional(object({
+        name     = string
+        operator = string
+        pattern  = string
+        negate   = optional(bool, false)
+      }))
+      commit_message_pattern = optional(object({
+        name     = string
+        operator = string
+        pattern  = string
+        negate   = optional(bool, false)
+      }))
+      pull_request = optional(object({
+        dismiss_stale_reviews_on_push     = optional(bool, false)
+        require_code_owner_review         = optional(bool, true)
+        require_last_push_approval        = optional(bool, false)
+        required_approving_review_count   = optional(number, 1)
+        required_review_thread_resolution = optional(bool, false)
+      }))
+      required_status_checks = optional(object({
+        required_check = object({
+          context        = string
+          integration_id = optional(number)
+        })
+        strict_required_status_checks_policy = optional(bool, true)
+      }))
+    })
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
 <!-- markdownlint-restore -->
 
 ### Outputs
@@ -976,17 +1399,3 @@ This project is under following licenses (**OR**) :
 [main_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE
 [beerware_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE.BEERWARE
 <!-- END DOTGIT-SYNC BLOCK MANAGED -->
-
-<!-- BEGIN TF-DOCS -->
-## ⚙️ Module Content
-
-<details><summary>Click to reveal</summary>
-
-### Table of Content
-
-
-
-
-</details>
-
-<!-- END TF-DOCS -->
