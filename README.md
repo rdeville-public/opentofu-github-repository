@@ -80,3 +80,17 @@ This project is under following licenses (**OR**) :
 [main_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE
 [beerware_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE.BEERWARE
 <!-- END DOTGIT-SYNC BLOCK MANAGED -->
+
+<!-- BEGIN TF-DOCS -->
+## ⚙️ Module Content
+
+<details><summary>Click to reveal</summary>
+
+### Table of Content
+
+
+
+
+</details>
+
+<!-- END TF-DOCS -->
