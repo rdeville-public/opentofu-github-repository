@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.2.0 (2024-09-09)
+
+### ✨ Minor
+
+  * ✨ Add repository ruleset deployment (!4) by Romain Deville ([`409141c`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/409141c4fb5112dd692e1598babcb11bd54e434d))
+  * ✨ Add repository ruleset deployment by Romain Deville ([`f6e2543`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6e254327d0f81b0344b6851b6f0978ba7772978)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`5b29759`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/5b297599c2bbca8a31ad2e1ff0754763e7940e1b)) 🔏
+
 ## v0.1.0 (2024-09-09)
 
 ### ✨ Minor
@@ -12,6 +23,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs by Romain Deville ([`a4cfdf6`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a4cfdf619ff0baf60f45d51892ee0be827726279)) 🔏
+  * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`4239517`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/423951709f5ba4ceb75bdb59dcdc0e85998a34b0))
 
 ## v0.0.1 (2024-09-09)
 
@@ -31,7 +43,6 @@
 
   * 🎉 Initialization of the project from DGS (!1) by Romain Deville ([`0fa375b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/0fa375b173bbfe18444bcb5efe088d27fdb8cdc0))
   * 👷 Add Gitlab CI from DGS template by Romain Deville ([`389c2c7`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/389c2c71fc8dd83d421dfb8f86e2e158b6fedc25)) 🔏
-  * 📄 Update licenses from DGS by Romain Deville ([`442d5f3`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/442d5f30c39bc442ef446154c2eed141630de192)) 🔏
   * 📝 Update README from tf-docs by Romain Deville ([`ce182ed`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ce182ed89e76f5abb07f410a609191c4f17831b9)) 🔏
   * 📝 Add CODE_OF_CONDUCT from DGS by Romain Deville ([`3fa419b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/3fa419b841cd12cdff9ddbcc7facf2370866a79d)) 🔏
   * 📝 Update README from DGS by Romain Deville ([`a154f98`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a154f982e433f597d7aac368d5d3ca18ff9026fb)) 🔏
