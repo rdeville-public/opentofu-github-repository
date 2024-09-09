@@ -1,6 +1,18 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.1.0 (2024-09-09)
+
+### ✨ Minor
+
+  * ✨ Set provider constraint and add github_repository resources (!2) by Romain Deville ([`8704430`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/870443094015363e9323bf01fc776666ea01f85a))
+  * ✨ Add github_repository resources by Romain Deville ([`6c9490e`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/6c9490e0367f522004c3ab12b3c2dc812443f826)) 🔏
+  * ✨ Add provider constraints by Romain Deville ([`834a02a`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/834a02a9911b5955ed3ef307426c9995e87769a9)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs by Romain Deville ([`a4cfdf6`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a4cfdf619ff0baf60f45d51892ee0be827726279)) 🔏
+
 ## v0.0.1 (2024-09-09)
 
 ### 🩹 Patch
@@ -23,6 +35,7 @@
   * 📝 Update README from tf-docs by Romain Deville ([`ce182ed`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ce182ed89e76f5abb07f410a609191c4f17831b9)) 🔏
   * 📝 Add CODE_OF_CONDUCT from DGS by Romain Deville ([`3fa419b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/3fa419b841cd12cdff9ddbcc7facf2370866a79d)) 🔏
   * 📝 Update README from DGS by Romain Deville ([`a154f98`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a154f982e433f597d7aac368d5d3ca18ff9026fb)) 🔏
+  * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`26f720f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/26f720fd39eade3a89b5dfc5bd346d47639c37be)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`a236e97`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a236e97a93067b6e48160392bb7664d9df3ca83f)) 🔏
   * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`8de2cf1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/8de2cf1360ad9151a9c289dca369f76b48065271)) 🔏
