@@ -354,7 +354,6 @@ variable "settings_topics" {
   default  = []
 }
 
-
 # Repository Rules Set variables
 # ------------------------------------------------------------------------
 variable "ruleset" {
@@ -593,4 +592,13 @@ variable "ruleset" {
   EOM
 
   default = {}
+}
+
+# Repository Topics variables
+# ------------------------------------------------------------------------
+variable "topics" {
+  type        = list(string)
+  description = "A list of topics to add to the repository"
+
+  default = []
 }
