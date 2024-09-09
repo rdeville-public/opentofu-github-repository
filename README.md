@@ -290,6 +290,44 @@ module "repo" {
 }
 ```
 
+### Deploy Repo Actions Variables
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  actions_variable = {
+    FOO = "bar"
+  }
+}
+```
+
+### Deploy Repo Actions Secrets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  actions_secrets = {
+    # Not very secure, better to use variables.tf files and values in encrypted
+    # values.tfvars files.
+    BAR = "baz"
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -313,6 +351,10 @@ module "repo" {
 
 ### Resources
 
+* [resource.github_actions_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret)
+  > Manage action secrets of repository
+* [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
+  > Manage action variables of repository
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
@@ -389,6 +431,8 @@ string
 * [settings_topics](#settings_topics)
 * [ruleset](#ruleset)
 * [topics](#topics)
+* [actions_variables](#actions_variables)
+* [actions_secrets](#actions_secrets)
 
 
 ##### `settings_homepage_url`
@@ -1396,6 +1440,58 @@ A list of topics to add to the repository
 
   ```hcl
   []
+  ```
+
+  </div>
+</details>
+
+##### `actions_variables`
+
+A map of string where key is the name of the variable and value is the value
+of the actions Variables
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `actions_secrets`
+
+A map of string where key is the name of the secret and value is the value
+of the actions Secrets
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
   ```
 
   </div>
