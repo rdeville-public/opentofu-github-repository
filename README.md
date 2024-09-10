@@ -328,6 +328,31 @@ module "repo" {
 }
 ```
 
+### Deploy Repo Issues Labels
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  labels = {
+    "todo:triage" = {
+      color = "FF0000"
+      description = "Issue that need triage"
+    }
+    "todo:assigne" = {
+      color = "DD0000"
+      description = "Issue that need to be assigned"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -355,6 +380,8 @@ module "repo" {
   > Manage action secrets of repository
 * [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
   > Manage action variables of repository
+* [resource.github_issue_labels.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_labels)
+  > Manage issues labels of the repository.
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
@@ -433,6 +460,7 @@ string
 * [topics](#topics)
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
+* [issues_labels](#issues_labels)
 
 
 ##### `settings_homepage_url`
@@ -1484,6 +1512,39 @@ of the actions Secrets
 
   ```hcl
   map(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `issues_labels`
+
+A map of object, where key is the name of the labels. Object support following
+attributes :
+
+* `color`: String, A 6 character hex code, **without the leading #**,
+  identifying the color of the label.
+* `description`: String, A short description of the label
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    color       = string
+    description = string
+  }))
   ```
 
   </div>
