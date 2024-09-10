@@ -201,7 +201,6 @@ resource "github_actions_variable" "this" {
   value         = each.value
 }
 
-
 # Manage action secrets of repository
 resource "github_actions_secret" "this" {
   for_each = var.actions_secrets
@@ -210,4 +209,19 @@ resource "github_actions_secret" "this" {
 
   secret_name     = each.key
   encrypted_value = base64encode(each.value)
+}
+
+# Manage issues labels of the repository.
+resource "github_issue_labels" "this" {
+  repository = github_repository.this.id
+
+  dynamic "label" {
+    for_each = var.issues_labels
+
+    content {
+      name        = label.key
+      color       = label.value.color
+      description = label.value.description
+    }
+  }
 }

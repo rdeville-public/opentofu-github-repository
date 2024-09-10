@@ -632,3 +632,24 @@ variable "actions_secrets" {
   nullable = false
   default  = {}
 }
+
+# Repository Issues Labels variables
+# ------------------------------------------------------------------------
+variable "issues_labels" {
+  # Key is the name of the action variable
+  type = map(object({
+    color       = string
+    description = string
+  }))
+  description = <<-EOM
+  A map of object, where key is the name of the labels. Object support following
+  attributes :
+
+  * `color`: String, A 6 character hex code, **without the leading #**,
+    identifying the color of the label.
+  * `description`: String, A short description of the label
+  EOM
+
+  nullable = false
+  default  = {}
+}

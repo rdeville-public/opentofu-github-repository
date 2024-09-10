@@ -5,7 +5,7 @@
 
 > ⚠️ IMPORTANT !
 >
-> Main repo is on [framagit.org](https://framagit.org/rdeville-public/terraform/module-github-groups).
+> Main repo is on [framagit.org](https://framagit.org/rdeville-public/terraform/module-github-repository).
 >
 > On other online git platforms, they are just mirror of the main repo.
 >
@@ -25,12 +25,12 @@
 
 </center>
 
-[build_badge]: https://framagit.org/rdeville-public/terraform/module-github-groups/badges/main/pipeline.svg
-[build_badge_url]: https://framagit.org/rdeville-public/terraform/module-github-groups/-/commits/main
-[release_badge]: https://framagit.org/rdeville-public/terraform/module-github-groups/-/badges/release.svg
-[release_badge_url]: https://framagit.org/rdeville-public/terraform/module-github-groups/-/releases/
+[build_badge]: https://framagit.org/rdeville-public/terraform/module-github-repository/badges/main/pipeline.svg
+[build_badge_url]: https://framagit.org/rdeville-public/terraform/module-github-repository/-/commits/main
+[release_badge]: https://framagit.org/rdeville-public/terraform/module-github-repository/-/badges/release.svg
+[release_badge_url]: https://framagit.org/rdeville-public/terraform/module-github-repository/-/releases/
 [license_badge]: https://img.shields.io/badge/Licenses-MIT%20OR%20BEERWARE-blue
-[license_url]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE
+[license_url]: https://framagit.org/rdeville-public/terraform/module-github-repository/blob/main/LICENSE
 [changelog_badge]: https://img.shields.io/badge/Changelog-Python%20Semantic%20Release-yellow
 [changelog_badge_url]: https://github.com/python-semantic-release/python-semantic-release
 
@@ -328,6 +328,31 @@ module "repo" {
 }
 ```
 
+### Deploy Repo Issues Labels
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+  settings_homepage_url = "https://fake.repo.tld"
+
+  # Example values
+  labels = {
+    "todo:triage" = {
+      color = "FF0000"
+      description = "Issue that need triage"
+    }
+    "todo:assigne" = {
+      color = "DD0000"
+      description = "Issue that need to be assigned"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -355,6 +380,8 @@ module "repo" {
   > Manage action secrets of repository
 * [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
   > Manage action variables of repository
+* [resource.github_issue_labels.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_labels)
+  > Manage issues labels of the repository.
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
@@ -433,6 +460,7 @@ string
 * [topics](#topics)
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
+* [issues_labels](#issues_labels)
 
 
 ##### `settings_homepage_url`
@@ -1496,6 +1524,39 @@ of the actions Secrets
 
   </div>
 </details>
+
+##### `issues_labels`
+
+A map of object, where key is the name of the labels. Object support following
+attributes :
+
+* `color`: String, A 6 character hex code, **without the leading #**,
+  identifying the color of the label.
+* `description`: String, A short description of the label
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    color       = string
+    description = string
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
 <!-- markdownlint-restore -->
 
 ### Outputs
@@ -1519,8 +1580,8 @@ Feel free to check [issues page][issues_pages].
 
 You can also take a look at the [CONTRIBUTING.md][contributing].
 
-[issues_pages]: https://framagit.org/rdeville-public/terraform/module-github-groups/-/issues
-[contributing]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/CONTRIBUTING.md
+[issues_pages]: https://framagit.org/rdeville-public/terraform/module-github-repository/-/issues
+[contributing]: https://framagit.org/rdeville-public/terraform/module-github-repository/blob/main/CONTRIBUTING.md
 
 ## 👤 Maintainers
 
@@ -1539,6 +1600,6 @@ This project is under following licenses (**OR**) :
 * [MIT][main_license]
 * [BEERWARE][beerware_license]
 
-[main_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE
-[beerware_license]: https://framagit.org/rdeville-public/terraform/module-github-groups/blob/main/LICENSE.BEERWARE
+[main_license]: https://framagit.org/rdeville-public/terraform/module-github-repository/blob/main/LICENSE
+[beerware_license]: https://framagit.org/rdeville-public/terraform/module-github-repository/blob/main/LICENSE.BEERWARE
 <!-- END DOTGIT-SYNC BLOCK MANAGED -->

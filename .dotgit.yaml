@@ -15,7 +15,7 @@ dotgit:
 # Repos description and template usage configuration
 # ------------------------------------------------------------------------------
 name: OpenTofu Module Github Repository
-slug: module-github-organization
+slug: module-github-repository
 description: |-
   OpenTofu modules allowing to manage github repository configuration.
 licenses:
@@ -70,4 +70,4 @@ extra:
           alt: "@rdeville"
           url: https://framagit.org/rdeville
   repo:
-    url: https://framagit.org/rdeville-public/terraform/module-github-groups
+    url: https://framagit.org/rdeville-public/terraform/module-github-repository
