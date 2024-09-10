@@ -321,9 +321,7 @@ module "repo" {
 
   # Example values
   actions_secrets = {
-    # Not very secure, better to use variables.tf files and values in encrypted
-    # values.tfvars files.
-    BAR = "baz"
+    BAR = "EncryptedValueUsingGithubPubKey"
   }
 }
 ```
