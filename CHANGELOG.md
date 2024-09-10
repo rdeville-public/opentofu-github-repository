@@ -1,6 +1,22 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.5.0 (2024-09-10)
+
+### ✨ Minor
+
+  * ✨ Add Deployment of Issues Labes (!7) by Romain Deville ([`78d4d86`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/78d4d867bd06cb5c3ad3a07c01433e3f6c747225))
+  * ✨ Add deployment of issues labels by Romain Deville ([`d04785e`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/d04785ed8e14207b42242e8be1e4a00ab5bba54f)) 🔏
+
+### 🩹 Patch
+
+  * 🔧 Fix typo in dotgit config by Romain Deville ([`9f1e2b3`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/9f1e2b38bc00bc6d391c39171b04bfb241da5168)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`bfe45b1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/bfe45b1099914360eabe61bfeff88ae5b0e58c4e)) 🔏
+  * 📝 Update README after DGS update by Romain Deville ([`4574f96`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/4574f96e52d767253260352743f8c11b89888bd4)) 🔏
+
 ## v0.4.0 (2024-09-09)
 
 ### ✨ Minor
@@ -11,6 +27,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example usage by Romain Deville ([`aeb19c8`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/aeb19c8abdda5f3ec64610cf255e4cd47972ea19)) 🔏
+  * 🔖 v0.4.0 (NO-CI) by Python Semantic Release [bot] ([`3553992`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/35539921c25f4b540579b49c5470fb4bb41e549d))
 
 ## v0.3.0 (2024-09-09)
 
@@ -60,8 +77,6 @@
   * 🔧 Add markdownlint config from DGS template by Romain Deville ([`92deaf3`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/92deaf3653d57878dc105415d8a873aef6c04054)) 🔏
   * 🔧 Add commitlint config from DGS template by Romain Deville ([`1b26ec6`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/1b26ec6ed6cdbcf7a03755f80c2639c8afcea0f7)) 🔏
   * 🔧 Add cspell configuration from DGS template by Romain Deville ([`dc61e95`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/dc61e9584509a23e981509a0b46b9e9f17385ea5)) 🔏
-  * 🔧 Add editorconfig from DGS template by Romain Deville ([`26e2af2`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/26e2af2a73aec2ee3f2974513f9b6a01d7c34c4c)) 🔏
-  * 🔧 Add dotgit sync configuration by Romain Deville ([`74ac93c`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/74ac93c51030cf70b37cd0253f4086462aafb26e)) 🔏
 
 ### 🔊 Others
 
