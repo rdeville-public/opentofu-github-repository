@@ -61,6 +61,8 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
   settings_homepage_url = "https://fake.repo.tld"
 
   # Provided values are default values
@@ -112,7 +114,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   ruleset = {
@@ -145,7 +146,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   ruleset = {
@@ -179,7 +179,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   ruleset = {
@@ -279,7 +278,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   topics = [
@@ -299,7 +297,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   actions_variable = {
@@ -317,7 +314,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   actions_secrets = {
@@ -335,7 +331,6 @@ module "repo" {
   # Required variables
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
-  settings_homepage_url = "https://fake.repo.tld"
 
   # Example values
   labels = {
@@ -347,6 +342,75 @@ module "repo" {
       color = "DD0000"
       description = "Issue that need to be assigned"
     }
+  }
+}
+```
+
+### Manage team access to the Repo
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  teams = {
+    pull = [
+      "viewerTeam"
+    ]
+    triage = [
+      "triageTeam"
+    ]
+    push = [
+      "pushTeam"
+    ]
+    maintain = [
+      "maintainerTeam"
+    ]
+    admin = [
+      "admin"
+    ]
+  }
+}
+```
+
+### Provide team higher access level to the Repo
+
+If a team is set in two (or more) attributes (i.e. access levels), then the
+higher access level is applied.
+
+This can be usefull for instance when providing temporarly greater access
+level to a team while minimizing the amount of action needed.
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  teams = {
+    pull = [
+      "viewerTeam"
+    ]
+    triage = [
+      "triageTeam"
+    ]
+    push = [
+      "pushTeam"
+    ]
+    maintain = [
+      "maintainerTeam"
+    ]
+    admin = [
+      "maintainerTeam"
+      "admin"
+    ]
   }
 }
 ```
@@ -386,6 +450,8 @@ module "repo" {
   > Manage ruletsets of an organization.
 * [resource.github_repository_topics.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_topics)
   > Manage topics of repository
+* [resource.github_team_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository)
+  > Manage team access level to the repository
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -459,6 +525,7 @@ string
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
 * [issues_labels](#issues_labels)
+* [teams](#teams)
 
 
 ##### `settings_homepage_url`
@@ -1543,6 +1610,89 @@ attributes :
     color       = string
     description = string
   }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `teams`
+
+Object with following attributes :
+
+* `pull`
+* `triage`
+* `push`
+* `maintain`
+* `admin`
+
+All attributes are set of string, optional, with default value `[]`.
+
+Above list is provided in order of access capacity, such that `pull` have more
+access than `triage` which have more access than `push`, etc.
+
+Elements of the sets are ID (or name) of teams with access to the repository
+corresponding to its attribute.
+
+For instance:
+
+```hcl
+teams = {
+  pull = [
+    "foo",
+  ]
+  admin = [
+    "bar",
+  ]
+```
+
+Provide `pull` access to the team `foo` and `admin` access to the team `bar`.
+
+If a team is set in two (or more) attributes (i.e. access levels), then the
+higher access level is applied.
+
+This can be usefull for instance when providing temporarly greater access
+level to a team while minimizing the amount of action needed.
+
+For instance:
+
+```hcl
+teams = {
+  pull = [
+    "foo",
+    "bar",
+  ]
+  admin = [
+    "bar",
+    "baz",
+  ]
+```
+
+Provide `pull` access to the team `foo` and `admin` access to the teams `bar`
+and `baz`
+
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  object({
+    pull     = optional(set(string), [])
+    triage   = optional(set(string), [])
+    push     = optional(set(string), [])
+    maintain = optional(set(string), [])
+    admin    = optional(set(string), [])
+  })
   ```
 
   </div>
