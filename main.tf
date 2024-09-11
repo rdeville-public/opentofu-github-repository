@@ -245,3 +245,20 @@ resource "github_repository_collaborators" "this" {
     }
   }
 }
+
+# Manage repository webhook
+resource "github_repository_webhook" "this" {
+  for_each = var.webhooks
+
+  repository = github_repository.this.name
+
+  active = each.value.active
+  events = each.value.events
+
+  configuration {
+    url          = each.value.url
+    content_type = each.value.content_type
+    insecure_ssl = each.value.insecure_ssl
+    secret       = each.value.secret
+  }
+}

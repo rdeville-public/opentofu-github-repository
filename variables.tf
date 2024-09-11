@@ -784,3 +784,33 @@ variable "users" {
   nullable = false
   default  = {}
 }
+
+# Repository Webhook variables
+# ------------------------------------------------------------------------
+variable "webhooks" {
+  # Key is just a human readabl identifier for the webhook
+  type = map(object({
+    events       = list(string)
+    url          = string
+    content_type = string
+    secret       = optional(string)
+    insecure_ssl = optional(bool, false)
+    active       = optional(bool, true)
+  }))
+  description = <<-EOM
+  Map of object, where key is just a human readable identifier. Object support
+  following attributes :
+
+  * `events`: List of string, a list of events which should trigger the webhook.
+    See a [list of available events](https://developer.github.com/v3/activity/events/types/).
+  * `url`: String, the URL of the webhook.
+  * `content_type`: String, the content type for the payload. Valid values are
+    either `form` or `json`.
+  * `secret`: String, optional, the shared secret for the webhook.
+    [See API documentation](https://developer.github.com/v3/repos/hooks/#create-a-hook).
+    Default to `null`.
+  * `insecure_ssl`: Boolean, optional, insecure SSL boolean toggle. Defaults to `false`.
+  * `active`: Boolean, optional, Indicate if the webhook should receive events.
+    Defaults to `true`.
+  EOM
+}
