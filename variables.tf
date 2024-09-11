@@ -640,8 +640,7 @@ variable "issues_labels" {
   * `description`: String, A short description of the label
   EOM
 
-  nullable = false
-  default  = {}
+  default = null
 }
 
 # Repository Teams variables
@@ -681,6 +680,7 @@ variable "teams" {
     admin = [
       "bar",
     ]
+  }
   ```
 
   Provide `pull` access to the team `foo` and `admin` access to the team `bar`.
@@ -703,9 +703,80 @@ variable "teams" {
       "bar",
       "baz",
     ]
+  }
   ```
 
   Provide `pull` access to the team `foo` and `admin` access to the teams `bar`
+  and `baz`
+
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+variable "users" {
+  type = object({
+    pull     = optional(set(string), [])
+    triage   = optional(set(string), [])
+    push     = optional(set(string), [])
+    maintain = optional(set(string), [])
+    admin    = optional(set(string), [])
+  })
+  description = <<-EOM
+  Object with following attributes :
+
+  * `pull`
+  * `triage`
+  * `push`
+  * `maintain`
+  * `admin`
+
+  All attributes are set of string, optional, with default value `[]`.
+
+  Above list is provided in order of access capacity, such that `pull` have more
+  access than `triage` which have more access than `push`, etc.
+
+  Elements of the sets are ID (or name) of users with access to the repository
+  corresponding to its attribute.
+
+  For instance:
+
+  ```hcl
+  users = {
+    pull = [
+      "foo",
+    ]
+    admin = [
+      "bar",
+    ]
+  }
+  ```
+
+  Provide `pull` access to the user `foo` and `admin` access to the user `bar`.
+
+  If a user is set in two (or more) attributes (i.e. access levels), then the
+  higher access level is applied.
+
+  This can be usefull for instance when providing temporarly greater access
+  level to a user while minimizing the amount of action needed.
+
+  For instance:
+
+  ```hcl
+  users = {
+    pull = [
+      "foo",
+      "bar",
+    ]
+    admin = [
+      "bar",
+      "baz",
+    ]
+  }
+  ```
+
+  Provide `pull` access to the user `foo` and `admin` access to the users `bar`
   and `baz`
 
   EOM
