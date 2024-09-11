@@ -1,6 +1,20 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.7.0 (2024-09-11)
+
+### ✨ Minor
+
+  * ✨ Upgrade from teams to collaborators management (!11) by Romain Deville ([`4b1636a`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/4b1636a0a26066ace8bd8620cafe8bede298429d))
+  * ✨ Upgrade from team management to collaborators (users and teams) by Romain Deville ([`e82b722`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/e82b7225583c7bb7a417a49165cdc77b7dd194e6)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and update examples by Romain Deville ([`94e9cd7`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/94e9cd7751dd69014080c687318062d222ddb039)) 🔏
+  * 📝 Update README and remove topics examples by Romain Deville ([`20a72c1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/20a72c10303490ba4e09bbe99788037d75a2e7f5)) 🔏
+  * 🔥 Remove dedicated github repository topics (!10) by Romain Deville ([`f62a813`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f62a813aff37bdc7b61f8b4ce8355c947818be36))
+  * 🔥 Remove dedicated github repository topics by Romain Deville ([`b97b62d`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/b97b62de027923120d3181f63b985a9db127a6ec)) 🔏
+
 ## v0.6.0 (2024-09-11)
 
 ### ✨ Minor
@@ -13,6 +27,7 @@
   * 📝 Update README from tf-docs and add examples by Romain Deville ([`2762b42`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/2762b427cba3b73c0128ef6bef81fba14f02710f)) 🔏
   * 📝 Fix README documentation (!8) by Romain Deville ([`3814b74`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/3814b748454d7fdfc13d17e2d74e606ddfbd5bc1))
   * 📝 Fix README documentation by Romain Deville ([`171f7a1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/171f7a1671fef2325d6e8ec89319e66e7e502b15)) 🔏
+  * 🔖 v0.6.0 (NO-CI) by Python Semantic Release [bot] ([`51f30df`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/51f30df2df22ec3780e5f8c4e2879d61d8a17ebd))
 
 ## v0.5.0 (2024-09-10)
 
@@ -87,16 +102,13 @@
   * ⬆️ Update templated files from dotgit-sync (!3) by Romain Deville ([`fd17448`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/fd17448b847cadc6100fa57df24836850f0c6275))
   * ⬆️ Update templated files from dotgit-sync by Dotgit Sync [bot] ([`02aa173`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/02aa1731dfc0c05a9f55f00e5b4c10fa542a28cf))
   * 🔧 Add terraform-docs config from DGS by Romain Deville ([`e996d54`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/e996d5489648cffe227d13e7a59d0cc009a7c354)) 🔏
-  * 🔧 Add semantic release config from DGS template by Romain Deville ([`c180832`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/c180832c1d81923ac9f25c967adc63e6dc6c4bf6)) 🔏
 
 ### 🔊 Others
 
   * 🎉 Initialization of the project from DGS (!1) by Romain Deville ([`0fa375b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/0fa375b173bbfe18444bcb5efe088d27fdb8cdc0))
-  * 👷 Add Gitlab CI from DGS template by Romain Deville ([`389c2c7`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/389c2c71fc8dd83d421dfb8f86e2e158b6fedc25)) 🔏
   * 📝 Update README from tf-docs by Romain Deville ([`ce182ed`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ce182ed89e76f5abb07f410a609191c4f17831b9)) 🔏
   * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`26f720f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/26f720fd39eade3a89b5dfc5bd346d47639c37be)) 🔏
-  * 🔨 Add devbox config from DGS template by Romain Deville ([`a236e97`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a236e97a93067b6e48160392bb7664d9df3ca83f)) 🔏
 
 ## v0.0.0 (2024-09-05)
 
