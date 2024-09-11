@@ -653,3 +653,73 @@ variable "issues_labels" {
   nullable = false
   default  = {}
 }
+
+# Repository Teams variables
+# ------------------------------------------------------------------------
+variable "teams" {
+  type = object({
+    pull     = optional(set(string), [])
+    triage   = optional(set(string), [])
+    push     = optional(set(string), [])
+    maintain = optional(set(string), [])
+    admin    = optional(set(string), [])
+  })
+  description = <<-EOM
+  Object with following attributes :
+
+  * `pull`
+  * `triage`
+  * `push`
+  * `maintain`
+  * `admin`
+
+  All attributes are set of string, optional, with default value `[]`.
+
+  Above list is provided in order of access capacity, such that `pull` have more
+  access than `triage` which have more access than `push`, etc.
+
+  Elements of the sets are ID (or name) of teams with access to the repository
+  corresponding to its attribute.
+
+  For instance:
+
+  ```hcl
+  teams = {
+    pull = [
+      "foo",
+    ]
+    admin = [
+      "bar",
+    ]
+  ```
+
+  Provide `pull` access to the team `foo` and `admin` access to the team `bar`.
+
+  If a team is set in two (or more) attributes (i.e. access levels), then the
+  higher access level is applied.
+
+  This can be usefull for instance when providing temporarly greater access
+  level to a team while minimizing the amount of action needed.
+
+  For instance:
+
+  ```hcl
+  teams = {
+    pull = [
+      "foo",
+      "bar",
+    ]
+    admin = [
+      "bar",
+      "baz",
+    ]
+  ```
+
+  Provide `pull` access to the team `foo` and `admin` access to the teams `bar`
+  and `baz`
+
+  EOM
+
+  nullable = false
+  default  = {}
+}
