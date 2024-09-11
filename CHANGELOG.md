@@ -1,6 +1,18 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.8.0 (2024-09-11)
+
+### ✨ Minor
+
+  * ✨ Add webhook repo management (!12) by Romain Deville ([`e461707`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/e4617077eb60f70f609a6106957fde9c8a662d8a))
+  * ✨ Add webhook repository management by Romain Deville ([`57727df`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/57727df78b3a8c6be105b1e8a781b38ff80ba3fe)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`81802f8`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/81802f875ba186351f01e9278182e42066bc705e)) 🔏
+  * 🚚 Move output.tf to outputs.tf by Romain Deville ([`94002d5`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/94002d50d2bbc580136bdc0de64be41d5810118b)) 🔏
+
 ## v0.7.0 (2024-09-11)
 
 ### ✨ Minor
@@ -12,6 +24,7 @@
 
   * 📝 Update README from tf-docs and update examples by Romain Deville ([`94e9cd7`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/94e9cd7751dd69014080c687318062d222ddb039)) 🔏
   * 📝 Update README and remove topics examples by Romain Deville ([`20a72c1`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/20a72c10303490ba4e09bbe99788037d75a2e7f5)) 🔏
+  * 🔖 v0.7.0 (NO-CI) by Python Semantic Release [bot] ([`d64c455`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/d64c45518ff53dbd21569e99f4b1c581ae51d3b4))
   * 🔥 Remove dedicated github repository topics (!10) by Romain Deville ([`f62a813`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f62a813aff37bdc7b61f8b4ce8355c947818be36))
   * 🔥 Remove dedicated github repository topics by Romain Deville ([`b97b62d`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/b97b62de027923120d3181f63b985a9db127a6ec)) 🔏
 
@@ -100,18 +113,9 @@
 ### 🩹 Patch
 
   * ⬆️ Update templated files from dotgit-sync (!3) by Romain Deville ([`fd17448`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/fd17448b847cadc6100fa57df24836850f0c6275))
-  * ⬆️ Update templated files from dotgit-sync by Dotgit Sync [bot] ([`02aa173`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/02aa1731dfc0c05a9f55f00e5b4c10fa542a28cf))
-  * 🔧 Add terraform-docs config from DGS by Romain Deville ([`e996d54`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/e996d5489648cffe227d13e7a59d0cc009a7c354)) 🔏
 
 ### 🔊 Others
 
   * 🎉 Initialization of the project from DGS (!1) by Romain Deville ([`0fa375b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/0fa375b173bbfe18444bcb5efe088d27fdb8cdc0))
   * 📝 Update README from tf-docs by Romain Deville ([`ce182ed`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ce182ed89e76f5abb07f410a609191c4f17831b9)) 🔏
   * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
-  * 🔨 Add .envrc from DGS template by Romain Deville ([`26f720f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/26f720fd39eade3a89b5dfc5bd346d47639c37be)) 🔏
-
-## v0.0.0 (2024-09-05)
-
-### 🔊 Others
-
-  * 🎉 Initial Commit by Romain Deville ([`fa47366`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/fa4736603f568af52b0e1b9e6f0bbfd6e2319dd2)) 🔏
