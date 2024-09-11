@@ -184,13 +184,6 @@ resource "github_repository_ruleset" "this" {
   }
 }
 
-# Manage topics of repository
-resource "github_repository_topics" "this" {
-  repository = github_repository.this.name
-
-  topics = var.topics
-}
-
 # Manage action variables of repository
 resource "github_actions_variable" "this" {
   for_each = var.actions_variables
