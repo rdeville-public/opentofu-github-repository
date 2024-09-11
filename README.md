@@ -327,7 +327,7 @@ module "repo" {
 }
 ```
 
-### Manage team access to the Repo
+### Manage team and users access to the Repo
 
 ```hcl
 module "repo" {
@@ -338,6 +338,14 @@ module "repo" {
   settings_description  = "Test Fake Repository Managed With OpenTofu"
 
   # Example values
+  users = {
+    pull = [
+      "userName"
+    ]
+    admin = [
+      "mySuperAdmin"
+    ]
+  }
   teams = {
     pull = [
       "viewerTeam"
@@ -358,13 +366,13 @@ module "repo" {
 }
 ```
 
-### Provide team higher access level to the Repo
+### Provide team or user higher access level to the Repo
 
-If a team is set in two (or more) attributes (i.e. access levels), then the
-higher access level is applied.
+If a team or user is set in two (or more) attributes (i.e. access levels), then
+the higher access level is applied.
 
 This can be usefull for instance when providing temporarly greater access
-level to a team while minimizing the amount of action needed.
+level to a team or a user while minimizing the amount of action needed.
 
 ```hcl
 module "repo" {
@@ -375,6 +383,17 @@ module "repo" {
   settings_description  = "Test Fake Repository Managed With OpenTofu"
 
   # Example values
+  users = {
+    pull = [
+      "userName"
+    ]
+    triate = [
+      "userName"
+    ]
+    admin = [
+      "mySuperAdmin"
+    ]
+  }
   teams = {
     pull = [
       "viewerTeam"
@@ -427,10 +446,10 @@ module "repo" {
   > Manage issues labels of the repository.
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
+* [resource.github_repository_collaborators.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborators)
+  > Manage collaborators (teams or users) access level to the repository
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_team_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository)
-  > Manage team access level to the repository
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -504,6 +523,7 @@ string
 * [actions_secrets](#actions_secrets)
 * [issues_labels](#issues_labels)
 * [teams](#teams)
+* [users](#users)
 
 
 ##### `settings_homepage_url`
@@ -1571,7 +1591,7 @@ attributes :
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  {}
+  null
   ```
 
   </div>
@@ -1605,6 +1625,7 @@ teams = {
   admin = [
     "bar",
   ]
+}
 ```
 
 Provide `pull` access to the team `foo` and `admin` access to the team `bar`.
@@ -1627,9 +1648,95 @@ teams = {
     "bar",
     "baz",
   ]
+}
 ```
 
 Provide `pull` access to the team `foo` and `admin` access to the teams `bar`
+and `baz`
+
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  object({
+    pull     = optional(set(string), [])
+    triage   = optional(set(string), [])
+    push     = optional(set(string), [])
+    maintain = optional(set(string), [])
+    admin    = optional(set(string), [])
+  })
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `users`
+
+Object with following attributes :
+
+* `pull`
+* `triage`
+* `push`
+* `maintain`
+* `admin`
+
+All attributes are set of string, optional, with default value `[]`.
+
+Above list is provided in order of access capacity, such that `pull` have more
+access than `triage` which have more access than `push`, etc.
+
+Elements of the sets are ID (or name) of users with access to the repository
+corresponding to its attribute.
+
+For instance:
+
+```hcl
+users = {
+  pull = [
+    "foo",
+  ]
+  admin = [
+    "bar",
+  ]
+}
+```
+
+Provide `pull` access to the user `foo` and `admin` access to the user `bar`.
+
+If a user is set in two (or more) attributes (i.e. access levels), then the
+higher access level is applied.
+
+This can be usefull for instance when providing temporarly greater access
+level to a user while minimizing the amount of action needed.
+
+For instance:
+
+```hcl
+users = {
+  pull = [
+    "foo",
+    "bar",
+  ]
+  admin = [
+    "bar",
+    "baz",
+  ]
+}
+```
+
+Provide `pull` access to the user `foo` and `admin` access to the users `bar`
 and `baz`
 
 
