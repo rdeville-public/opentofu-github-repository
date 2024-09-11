@@ -28,9 +28,42 @@ locals {
     )
     admin = var.teams.admin
   }
-
-  # Convert to set for the resource
+  # Convert to map for the resource
   teams = {
     for team, perm in transpose(local.team_perm) : team => one(perm)
+  }
+
+  # Assign highest privileged if user is present in multiple access level
+  user_perm = {
+    pull = setsubtract(
+      var.users.pull, setunion(
+        var.users.triage,
+        var.users.push,
+        var.users.maintain,
+        var.users.admin
+      )
+    )
+    triage = setsubtract(
+      var.users.triage, setunion(
+        var.users.push,
+        var.users.maintain,
+        var.users.admin
+      )
+    )
+    push = setsubtract(
+      var.users.push, setunion(
+        var.users.maintain,
+        var.users.admin
+      )
+    )
+    maintain = setsubtract(
+      var.users.maintain,
+      var.users.admin
+    )
+    admin = var.users.admin
+  }
+  # Convert to map for the resource
+  users = {
+    for user, perm in transpose(local.user_perm) : user => one(perm)
   }
 }

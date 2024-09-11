@@ -206,6 +206,8 @@ resource "github_actions_secret" "this" {
 
 # Manage issues labels of the repository.
 resource "github_issue_labels" "this" {
+  count = var.issues_labels != null ? 1 : 0
+
   repository = github_repository.this.id
 
   dynamic "label" {
@@ -219,11 +221,27 @@ resource "github_issue_labels" "this" {
   }
 }
 
-# Manage team access level to the repository
-resource "github_team_repository" "this" {
-  for_each = local.teams
+# Manage collaborators (teams or users) access level to the repository
+resource "github_repository_collaborators" "this" {
+  count = local.users != {} && local.teams != {} ? 1 : 0
 
   repository = github_repository.this.name
-  team_id    = each.key
-  permission = each.value
+
+  dynamic "user" {
+    for_each = local.users
+
+    content {
+      username   = each.key
+      permission = each.value
+    }
+  }
+
+  dynamic "team" {
+    for_each = local.teams
+
+    content {
+      team_id    = each.key
+      permission = each.value
+    }
+  }
 }
