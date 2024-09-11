@@ -415,6 +415,29 @@ module "repo" {
 }
 ```
 
+### Manage webhook of the Repo
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  webhooks = {
+    human-frendly-name = {
+      events = [
+        "issues"
+      ]
+      url = "https://my.app.tld/github/issues"
+      content_type = "json"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -450,6 +473,8 @@ module "repo" {
   > Manage collaborators (teams or users) access level to the repository
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
   > Manage ruletsets of an organization.
+* [resource.github_repository_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook)
+  > Manage repository webhook
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -459,6 +484,7 @@ module "repo" {
 
 * [settings_name](#settings_name)
 * [settings_description](#settings_description)
+* [webhooks](#webhooks)
 
 ##### `settings_name`
 
@@ -484,6 +510,42 @@ String, a description of the repository.
 
 ```hcl
 string
+```
+
+</details>
+</div>
+</div>
+
+##### `webhooks`
+
+Map of object, where key is just a human readable identifier. Object support
+following attributes :
+
+* `events`: List of string, a list of events which should trigger the webhook.
+  See a [list of available events](https://developer.github.com/v3/activity/events/types/).
+* `url`: String, the URL of the webhook.
+* `content_type`: String, the content type for the payload. Valid values are
+  either `form` or `json`.
+* `secret`: String, optional, the shared secret for the webhook.
+  [See API documentation](https://developer.github.com/v3/repos/hooks/#create-a-hook).
+  Default to `null`.
+* `insecure_ssl`: Boolean, optional, insecure SSL boolean toggle. Defaults to `false`.
+* `active`: Boolean, optional, Indicate if the webhook should receive events.
+  Defaults to `true`.
+
+<div style="display:inline-block;width:100%;">
+<div style="float:left;border-color:#FFFFFF;width:75%;">
+<details><summary>Type</summary>
+
+```hcl
+map(object({
+    events       = list(string)
+    url          = string
+    content_type = string
+    secret       = optional(string)
+    insecure_ssl = optional(bool, false)
+    active       = optional(bool, true)
+  }))
 ```
 
 </details>
