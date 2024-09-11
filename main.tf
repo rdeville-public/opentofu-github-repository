@@ -225,3 +225,12 @@ resource "github_issue_labels" "this" {
     }
   }
 }
+
+# Manage team access level to the repository
+resource "github_team_repository" "this" {
+  for_each = local.teams
+
+  repository = github_repository.this.name
+  team_id    = each.key
+  permission = each.value
+}
