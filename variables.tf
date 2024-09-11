@@ -595,16 +595,6 @@ variable "ruleset" {
   default  = {}
 }
 
-# Repository Topics variables
-# ------------------------------------------------------------------------
-variable "topics" {
-  type        = list(string)
-  description = "A list of topics to add to the repository"
-
-  nullable = false
-  default  = []
-}
-
 # Repository Actions Variables variables
 # ------------------------------------------------------------------------
 variable "actions_variables" {

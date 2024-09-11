@@ -269,25 +269,6 @@ module "repo" {
 }
 ```
 
-### Deploy Repo Topics
-
-```hcl
-module "repo" {
-  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
-
-  # Required variables
-  settings_name         = "Test Fake Repo"
-  settings_description  = "Test Fake Repository Managed With OpenTofu"
-
-  # Example values
-  topics = [
-    "documentation"
-    "api"
-    "terraform"
-  ]
-}
-```
-
 ### Deploy Repo Actions Variables
 
 ```hcl
@@ -448,8 +429,6 @@ module "repo" {
   > Manage basic settings of a Github repository.
 * [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_repository_topics.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_topics)
-  > Manage topics of repository
 * [resource.github_team_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository)
   > Manage team access level to the repository
 
@@ -521,7 +500,6 @@ string
 * [settings_security_and_analysis](#settings_security_and_analysis)
 * [settings_topics](#settings_topics)
 * [ruleset](#ruleset)
-* [topics](#topics)
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
 * [issues_labels](#issues_labels)
@@ -1509,30 +1487,6 @@ Object define ruleset apply to branch ONLY, with the following arguments:
 
   ```hcl
   {}
-  ```
-
-  </div>
-</details>
-
-##### `topics`
-
-A list of topics to add to the repository
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  list(string)
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  []
   ```
 
   </div>
