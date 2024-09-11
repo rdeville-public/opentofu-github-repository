@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.8.1 (2024-09-11)
+
+### 🩹 Patch
+
+  * 🐛 Fix webhooks by defining default variables (!13) by Romain Deville ([`989aa95`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/989aa95048cd940c0340402c1b1dad5a213562f3))
+  * 🐛 Fix webhook by defining default values by Romain Deville ([`bb04c4c`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/bb04c4ce3ec25c7dd654ce71d046c57ee29048be)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs by Romain Deville ([`f2f953a`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f2f953ae77676296f8e2bfe59bcc53e9c3eb0293)) 🔏
+
 ## v0.8.0 (2024-09-11)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`81802f8`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/81802f875ba186351f01e9278182e42066bc705e)) 🔏
+  * 🔖 v0.8.0 (NO-CI) by Python Semantic Release [bot] ([`f8ed15b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f8ed15b9fb6b4fda8f5adda6a7dd08202e503629))
   * 🚚 Move output.tf to outputs.tf by Romain Deville ([`94002d5`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/94002d50d2bbc580136bdc0de64be41d5810118b)) 🔏
 
 ## v0.7.0 (2024-09-11)
@@ -100,8 +112,6 @@
 ### ✨ Minor
 
   * ✨ Set provider constraint and add github_repository resources (!2) by Romain Deville ([`8704430`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/870443094015363e9323bf01fc776666ea01f85a))
-  * ✨ Add github_repository resources by Romain Deville ([`6c9490e`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/6c9490e0367f522004c3ab12b3c2dc812443f826)) 🔏
-  * ✨ Add provider constraints by Romain Deville ([`834a02a`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/834a02a9911b5955ed3ef307426c9995e87769a9)) 🔏
 
 ### 🔊 Others
 
@@ -110,12 +120,6 @@
 
 ## v0.0.1 (2024-09-09)
 
-### 🩹 Patch
-
-  * ⬆️ Update templated files from dotgit-sync (!3) by Romain Deville ([`fd17448`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/fd17448b847cadc6100fa57df24836850f0c6275))
-
 ### 🔊 Others
 
-  * 🎉 Initialization of the project from DGS (!1) by Romain Deville ([`0fa375b`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/0fa375b173bbfe18444bcb5efe088d27fdb8cdc0))
-  * 📝 Update README from tf-docs by Romain Deville ([`ce182ed`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ce182ed89e76f5abb07f410a609191c4f17831b9)) 🔏
   * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
