@@ -813,4 +813,7 @@ variable "webhooks" {
   * `active`: Boolean, optional, Indicate if the webhook should receive events.
     Defaults to `true`.
   EOM
+
+  nullable = false
+  default  = {}
 }
