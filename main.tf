@@ -262,3 +262,23 @@ resource "github_repository_webhook" "this" {
     secret       = each.value.secret
   }
 }
+
+# Allow this repository to access to organization actions secrets
+resource "github_actions_organization_secret_repositories" "this" {
+  for_each = var.organization_actions_secrets
+
+  secret_name = each.value
+  selected_repository_ids = [
+    github_repository.this.repo_id
+  ]
+}
+
+# Allow this repository to access to organization dependabot secrets
+resource "github_dependabot_organization_secret_repositories" "this" {
+  for_each = var.organization_dependabot_secrets
+
+  secret_name = each.value
+  selected_repository_ids = [
+    github_repository.this.repo_id
+  ]
+}
