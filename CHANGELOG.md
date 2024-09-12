@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.9.0 (2024-09-12)
+
+### ✨ Minor
+
+  * ✨ Add repository access to organization secrets (!15) by Romain Deville ([`c7d7b0f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/c7d7b0fcc4929b9bd02a7750ab85842ea602d023))
+  * ✨ Add repository access to organization secrets (dependabot and action) by Romain Deville ([`1068c0f`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/1068c0f26ef4cc1acb2230dfb29df8287eeb8ca7)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`71590c9`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/71590c9e2e7c7c042fe516ec9933ead29e86d069)) 🔏
+
 ## v0.8.2 (2024-09-12)
 
 ### 🩹 Patch
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs by Romain Deville ([`ab8dfb9`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ab8dfb972af3f9c80d8758c80da78a1a9ad10ef9)) 🔏
+  * 🔖 v0.8.2 (NO-CI) by Python Semantic Release [bot] ([`f29bc38`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f29bc38c03c8123799fb50f0ea5ae0440978df01))
 
 ## v0.8.1 (2024-09-11)
 
@@ -100,7 +112,6 @@
 ### ✨ Minor
 
   * ✨ Add repo topics deployment (!5) by Romain Deville ([`f138ebd`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f138ebd0c7f7290dad37bd2e3998d55a163c2574))
-  * ✨ Add repo topics deployment by Romain Deville ([`77e262e`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/77e262ebf27a67817e3ba08ac528375846eb61c8)) 🔏
 
 ### 🔊 Others
 
@@ -109,17 +120,6 @@
 
 ## v0.2.0 (2024-09-09)
 
-### ✨ Minor
-
-  * ✨ Add repository ruleset deployment (!4) by Romain Deville ([`409141c`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/409141c4fb5112dd692e1598babcb11bd54e434d))
-
 ### 🔊 Others
 
-  * 📝 Update README from tf-docs and add examples by Romain Deville ([`5b29759`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/5b297599c2bbca8a31ad2e1ff0754763e7940e1b)) 🔏
   * 🔖 v0.2.0 (NO-CI) by Python Semantic Release [bot] ([`0746d45`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/0746d45f5d59d09839aad1d8528b571d4ef76039))
-
-## v0.1.0 (2024-09-09)
-
-### 🔊 Others
-
-  * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`4239517`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/423951709f5ba4ceb75bdb59dcdc0e85998a34b0))
