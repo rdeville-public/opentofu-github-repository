@@ -555,7 +555,6 @@ string
 ##### `settings_homepage_url`
 
 String, optional, URL of a page describing the project.
-
 <details style="width: 100%;display: inline-block">
   <summary>Type & Default</summary>
   <div style="height: 1em"></div>
@@ -690,8 +689,7 @@ If you specify `true` when it has been disabled it will return an error.
 
 ##### `settings_has_wiki`
 
-Boolean, optional, set to `true` to enable the GitHub Project on the
-repository.
+Boolean, optional, set to `true` to enable the GitHub wiki on the repository.
 
 <details style="width: 100%;display: inline-block">
   <summary>Type & Default</summary>
@@ -716,7 +714,7 @@ repository.
 
 ##### `settings_is_template`
 
-Boolean, optional, set to `true`` to tell GitHub that this is a template
+Boolean, optional, set to `true` to tell GitHub that this is a template
 repository.
 
 <details style="width: 100%;display: inline-block">
@@ -817,7 +815,7 @@ Boolean, optional, set to `true` to enable rebase merges on the repository.
 
 ##### `settings_allow_auto_merge`
 
-Boolean, optional, set to `true`` to allow auto-merging pull requests on the
+Boolean, optional, set to `true` to allow auto-merging pull requests on the
 repository.
 
 <details style="width: 100%;display: inline-block">
@@ -843,7 +841,7 @@ repository.
 
 ##### `settings_squash_merge_commit_title`
 
-String, optional, Can be `PR_TITLE`` or `COMMIT_OR_PR_TITLE`` for a default
+String, optional, Can be `PR_TITLE` or `COMMIT_OR_PR_TITLE` for a default
 squash merge commit title.
 
 Applicable only if `settings_allow_squash_merge` is `true`.

@@ -12,9 +12,7 @@ variable "settings_description" {
 
 variable "settings_homepage_url" {
   type        = string
-  description = <<-EOM
-  String, optional, URL of a page describing the project.
-  EOM
+  description = "String, optional, URL of a page describing the project."
 
   nullable = false
   default  = ""
@@ -74,8 +72,7 @@ variable "settings_has_projects" {
 variable "settings_has_wiki" {
   type        = bool
   description = <<-EOM
-  Boolean, optional, set to `true` to enable the GitHub Project on the
-  repository.
+  Boolean, optional, set to `true` to enable the GitHub wiki on the repository.
   EOM
 
   nullable = false
@@ -85,7 +82,7 @@ variable "settings_has_wiki" {
 variable "settings_is_template" {
   type        = bool
   description = <<-EOM
-  Boolean, optional, set to `true`` to tell GitHub that this is a template
+  Boolean, optional, set to `true` to tell GitHub that this is a template
   repository.
   EOM
 
@@ -126,7 +123,7 @@ variable "settings_allow_rebase_merge" {
 variable "settings_allow_auto_merge" {
   type        = bool
   description = <<-EOM
-  Boolean, optional, set to `true`` to allow auto-merging pull requests on the
+  Boolean, optional, set to `true` to allow auto-merging pull requests on the
   repository.
   EOM
 
@@ -137,7 +134,7 @@ variable "settings_allow_auto_merge" {
 variable "settings_squash_merge_commit_title" {
   type        = string
   description = <<-EOM
-  String, optional, Can be `PR_TITLE`` or `COMMIT_OR_PR_TITLE`` for a default
+  String, optional, Can be `PR_TITLE` or `COMMIT_OR_PR_TITLE` for a default
   squash merge commit title.
 
   Applicable only if `settings_allow_squash_merge` is `true`.
