@@ -438,6 +438,40 @@ module "repo" {
 }
 ```
 
+### Allow repo to access to organization actions secrets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  organization_actions_secrets = [
+    "secretName"
+  ]
+}
+```
+
+### Allow repo to access to organization dependabot secrets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-repository.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  organization_dependabot_secrets = [
+    "dependabotSecretName"
+  ]
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -461,10 +495,14 @@ module "repo" {
 
 ### Resources
 
+* [resource.github_actions_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret_repositories)
+  > Allow this repository to access to organization actions secrets
 * [resource.github_actions_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret)
   > Manage action secrets of repository
 * [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
   > Manage action variables of repository
+* [resource.github_dependabot_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret_repositories)
+  > Allow this repository to access to organization dependabot secrets
 * [resource.github_issue_labels.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_labels)
   > Manage issues labels of the repository.
 * [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
@@ -484,6 +522,8 @@ module "repo" {
 
 * [settings_name](#settings_name)
 * [settings_description](#settings_description)
+* [organization_actions_secrets](#organization_actions_secrets)
+* [organization_dependabot_secrets](#organization_dependabot_secrets)
 
 ##### `settings_name`
 
@@ -509,6 +549,44 @@ String, a description of the repository.
 
 ```hcl
 string
+```
+
+</details>
+</div>
+</div>
+
+##### `organization_actions_secrets`
+
+Set of string, values are name of organization secrets this repository can
+access to.
+
+Note: Organization secrets must have a visibility of `selected`.
+
+<div style="display:inline-block;width:100%;">
+<div style="float:left;border-color:#FFFFFF;width:75%;">
+<details><summary>Type</summary>
+
+```hcl
+set(string)
+```
+
+</details>
+</div>
+</div>
+
+##### `organization_dependabot_secrets`
+
+Set of string, values are name of organization dependabots secrets this
+repository can access to.
+
+Note: Organization Dependabot secrets must have a visibility of `selected`.
+
+<div style="display:inline-block;width:100%;">
+<div style="float:left;border-color:#FFFFFF;width:75%;">
+<details><summary>Type</summary>
+
+```hcl
+set(string)
 ```
 
 </details>
