@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.8.2 (2024-09-12)
+
+### 🩹 Patch
+
+  * ✏️ Fix typos in variables descriptions (!14) by Romain Deville ([`10895e7`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/10895e729e303541d64eeee4a06db357d37290a5))
+  * ✏️ Fix typos in variables description by Romain Deville ([`4863776`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/486377600773dc6c948fde5c25c57d4db697a826)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs by Romain Deville ([`ab8dfb9`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/ab8dfb972af3f9c80d8758c80da78a1a9ad10ef9)) 🔏
+
 ## v0.8.1 (2024-09-11)
 
 ### 🩹 Patch
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs by Romain Deville ([`f2f953a`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f2f953ae77676296f8e2bfe59bcc53e9c3eb0293)) 🔏
+  * 🔖 v0.8.1 (NO-CI) by Python Semantic Release [bot] ([`29e6ab8`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/29e6ab80e07a950f95d8515c2e19e292869a4777))
 
 ## v0.8.0 (2024-09-11)
 
@@ -100,7 +112,6 @@
 ### ✨ Minor
 
   * ✨ Add repository ruleset deployment (!4) by Romain Deville ([`409141c`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/409141c4fb5112dd692e1598babcb11bd54e434d))
-  * ✨ Add repository ruleset deployment by Romain Deville ([`f6e2543`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6e254327d0f81b0344b6851b6f0978ba7772978)) 🔏
 
 ### 🔊 Others
 
@@ -109,17 +120,6 @@
 
 ## v0.1.0 (2024-09-09)
 
-### ✨ Minor
-
-  * ✨ Set provider constraint and add github_repository resources (!2) by Romain Deville ([`8704430`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/870443094015363e9323bf01fc776666ea01f85a))
-
 ### 🔊 Others
 
-  * 📝 Update README from tf-docs by Romain Deville ([`a4cfdf6`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/a4cfdf619ff0baf60f45d51892ee0be827726279)) 🔏
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`4239517`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/423951709f5ba4ceb75bdb59dcdc0e85998a34b0))
-
-## v0.0.1 (2024-09-09)
-
-### 🔊 Others
-
-  * 🔖 v0.0.1 (NO-CI) by Python Semantic Release [bot] ([`f6df229`](https://framagit.org/rdeville-public/terraform/module-github-repository/-/commit/f6df229c379b16c2b4b294c21fdadaa0e49b16d3))
