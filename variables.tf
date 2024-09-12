@@ -814,3 +814,25 @@ variable "webhooks" {
   nullable = false
   default  = {}
 }
+
+# Repository dependabot orgnization secrets
+variable "organization_actions_secrets" {
+  type        = set(string)
+  description = <<-EOM
+  Set of string, values are name of organization secrets this repository can
+  access to.
+
+  Note: Organization secrets must have a visibility of `selected`.
+  EOM
+}
+
+# Repository dependabot orgnization secrets
+variable "organization_dependabot_secrets" {
+  type        = set(string)
+  description = <<-EOM
+  Set of string, values are name of organization dependabots secrets this
+  repository can access to.
+
+  Note: Organization Dependabot secrets must have a visibility of `selected`.
+  EOM
+}
