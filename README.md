@@ -1,4 +1,5 @@
 <!-- BEGIN DOTGIT-SYNC BLOCK MANAGED -->
+<!-- markdownlint-disable -->
 # 👋 Welcome to OpenTofu Module Github Repository
 
 <center>
@@ -1995,7 +1996,8 @@ You can also take a look at the [CONTRIBUTING.md][contributing].
 
 ## 📝 License
 
-Copyright © 2024 [Romain Deville](code@romaindeville.fr)
+Copyright © 2024 - 2025
+ * [Romain Deville \<code@romaindeville.fr\>](code@romaindeville.fr)
 
 This project is under following licenses (**OR**) :
 
