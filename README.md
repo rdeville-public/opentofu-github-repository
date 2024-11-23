@@ -490,28 +490,28 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://registry.terraform.io/providers/integrations/github/):
+* [github](https://registry.terraform.io/providers/opentofu/github/):
   `~>6.2`
 
 ### Resources
 
-* [resource.github_actions_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret_repositories)
+* [resource.github_actions_organization_secret_repositories.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_secret_repositories)
   > Allow this repository to access to organization actions secrets
-* [resource.github_actions_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret)
+* [resource.github_actions_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_secret)
   > Manage action secrets of repository
-* [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
+* [resource.github_actions_variable.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_variable)
   > Manage action variables of repository
-* [resource.github_dependabot_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret_repositories)
+* [resource.github_dependabot_organization_secret_repositories.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/dependabot_organization_secret_repositories)
   > Allow this repository to access to organization dependabot secrets
-* [resource.github_issue_labels.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_labels)
+* [resource.github_issue_labels.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/issue_labels)
   > Manage issues labels of the repository.
-* [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
+* [resource.github_repository.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
-* [resource.github_repository_collaborators.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborators)
+* [resource.github_repository_collaborators.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_collaborators)
   > Manage collaborators (teams or users) access level to the repository
-* [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
+* [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_repository_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook)
+* [resource.github_repository_webhook.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_webhook)
   > Manage repository webhook
 
 <!-- markdownlint-capture -->
@@ -522,8 +522,6 @@ module "repo" {
 
 * [settings_name](#settings_name)
 * [settings_description](#settings_description)
-* [organization_actions_secrets](#organization_actions_secrets)
-* [organization_dependabot_secrets](#organization_dependabot_secrets)
 
 ##### `settings_name`
 
@@ -555,44 +553,6 @@ string
 </div>
 </div>
 
-##### `organization_actions_secrets`
-
-Set of string, values are name of organization secrets this repository can
-access to.
-
-Note: Organization secrets must have a visibility of `selected`.
-
-<div style="display:inline-block;width:100%;">
-<div style="float:left;border-color:#FFFFFF;width:75%;">
-<details><summary>Type</summary>
-
-```hcl
-set(string)
-```
-
-</details>
-</div>
-</div>
-
-##### `organization_dependabot_secrets`
-
-Set of string, values are name of organization dependabots secrets this
-repository can access to.
-
-Note: Organization Dependabot secrets must have a visibility of `selected`.
-
-<div style="display:inline-block;width:100%;">
-<div style="float:left;border-color:#FFFFFF;width:75%;">
-<details><summary>Type</summary>
-
-```hcl
-set(string)
-```
-
-</details>
-</div>
-</div>
-
 #### Optional Inputs
 
 * [settings_homepage_url](#settings_homepage_url)
@@ -602,6 +562,7 @@ set(string)
 * [settings_has_projects](#settings_has_projects)
 * [settings_has_wiki](#settings_has_wiki)
 * [settings_is_template](#settings_is_template)
+* [allow_update_branch](#allow_update_branch)
 * [settings_allow_merge_commit](#settings_allow_merge_commit)
 * [settings_allow_squash_merge](#settings_allow_squash_merge)
 * [settings_allow_rebase_merge](#settings_allow_rebase_merge)
@@ -628,6 +589,8 @@ set(string)
 * [teams](#teams)
 * [users](#users)
 * [webhooks](#webhooks)
+* [organization_actions_secrets](#organization_actions_secrets)
+* [organization_dependabot_secrets](#organization_dependabot_secrets)
 
 
 ##### `settings_homepage_url`
@@ -816,6 +779,31 @@ repository.
   </div>
 </details>
 
+##### `allow_update_branch`
+
+Set to `false` to not always suggest updating pull request branches.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  bool
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  true
+  ```
+
+  </div>
+</details>
+
 ##### `settings_allow_merge_commit`
 
 Boolean, optional, set to `false` to disable merge commits on the repository.
@@ -835,7 +823,7 @@ Boolean, optional, set to `false` to disable merge commits on the repository.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  true
+  false
   ```
 
   </div>
@@ -885,7 +873,7 @@ Boolean, optional, set to `true` to enable rebase merges on the repository.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  false
+  true
   ```
 
   </div>
@@ -1252,11 +1240,11 @@ This object supports following arguments:
     files (i.e. `main` or `gh-pages`).
   * `path`: String, optional, the repository directory from which the site
      publishes. Default to `/`.
-* `settings_build_type`: String, optional, the type of GitHub Pages site to build.
+* `build_type`: String, optional, the type of GitHub Pages site to build.
   Can be `legacy` or `workflow`, default to `workflow`.
 
   If you use `legacy` as build type you need to set the option `source`.
-* `settings_cname`: String, optional, the custom domain for the repository.
+* `cname`: String, optional, the custom domain for the repository.
   This can only be set after the repository has been created. Default to
   `null`
 
@@ -1272,7 +1260,7 @@ This object supports following arguments:
       branch = string
       path   = optional(string, "/")
     }))
-    build_type = optional(string, "workflow")
+    build_type = optional(string)
     cname      = optional(string)
   })
   ```
@@ -1282,7 +1270,7 @@ This object supports following arguments:
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  {}
+  null
   ```
 
   </div>
@@ -1330,7 +1318,7 @@ The object supports following arguments:
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  {}
+  null
   ```
 
   </div>
@@ -1913,6 +1901,62 @@ following attributes :
 
   </div>
 </details>
+
+##### `organization_actions_secrets`
+
+Set of string, values are name of organization secrets this repository can
+access to.
+
+Note: Organization secrets must have a visibility of `selected`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  set(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  []
+  ```
+
+  </div>
+</details>
+
+##### `organization_dependabot_secrets`
+
+Set of string, values are name of organization dependabots secrets this
+repository can access to.
+
+Note: Organization Dependabot secrets must have a visibility of `selected`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  set(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  []
+  ```
+
+  </div>
+</details>
 <!-- markdownlint-restore -->
 
 ### Outputs
@@ -1921,7 +1965,9 @@ following attributes :
   SSH URL to use to clone repository
 * `http_url`:
   HTTPS URL to use to clone repository
-* `path_with_namespace`:
+* `name`:
+  Full path of the repository of the form `owner/repo-slug`
+* `full_name`:
   Full path of the repository of the form `owner/repo-slug`
 
 </details>
