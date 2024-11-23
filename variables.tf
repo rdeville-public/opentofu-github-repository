@@ -90,6 +90,16 @@ variable "settings_is_template" {
   default  = false
 }
 
+variable "allow_update_branch" {
+  type        = bool
+  description = <<-EOM
+  Set to `false` to not always suggest updating pull request branches.
+  EOM
+
+  nullable = false
+  default  = true
+}
+
 variable "settings_allow_merge_commit" {
   type        = bool
   description = <<-EOM
@@ -97,7 +107,7 @@ variable "settings_allow_merge_commit" {
   EOM
 
   nullable = false
-  default  = true
+  default  = false
 }
 
 variable "settings_allow_squash_merge" {
@@ -117,7 +127,7 @@ variable "settings_allow_rebase_merge" {
   EOM
 
   nullable = false
-  default  = false
+  default  = true
 }
 
 variable "settings_allow_auto_merge" {
@@ -281,7 +291,7 @@ variable "settings_pages" {
       branch = string
       path   = optional(string, "/")
     }))
-    build_type = optional(string, "workflow")
+    build_type = optional(string)
     cname      = optional(string)
   })
   description = <<-EOM
@@ -294,17 +304,16 @@ variable "settings_pages" {
       files (i.e. `main` or `gh-pages`).
     * `path`: String, optional, the repository directory from which the site
        publishes. Default to `/`.
-  * `settings_build_type`: String, optional, the type of GitHub Pages site to build.
+  * `build_type`: String, optional, the type of GitHub Pages site to build.
     Can be `legacy` or `workflow`, default to `workflow`.
 
     If you use `legacy` as build type you need to set the option `source`.
-  * `settings_cname`: String, optional, the custom domain for the repository.
+  * `cname`: String, optional, the custom domain for the repository.
     This can only be set after the repository has been created. Default to
     `null`
   EOM
 
-  nullable = false
-  default  = {}
+  default = null
 }
 
 
@@ -337,8 +346,7 @@ variable "settings_security_and_analysis" {
     Default to `disabled`.
   EOM
 
-  nullable = false
-  default  = {}
+  default = null
 }
 
 variable "settings_topics" {
@@ -824,6 +832,9 @@ variable "organization_actions_secrets" {
 
   Note: Organization secrets must have a visibility of `selected`.
   EOM
+
+  nullable = false
+  default  = []
 }
 
 # Repository dependabot orgnization secrets
@@ -835,4 +846,7 @@ variable "organization_dependabot_secrets" {
 
   Note: Organization Dependabot secrets must have a visibility of `selected`.
   EOM
+
+  nullable = false
+  default  = []
 }

@@ -8,7 +8,12 @@ output "http_url" {
   description = "HTTPS URL to use to clone repository"
 }
 
-output "path_with_namespace" {
+output "name" {
+  value       = github_repository.this.full_name
+  description = "Full path of the repository of the form `owner/repo-slug`"
+}
+
+output "full_name" {
   value       = github_repository.this.full_name
   description = "Full path of the repository of the form `owner/repo-slug`"
 }

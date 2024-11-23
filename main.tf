@@ -10,6 +10,7 @@ resource "github_repository" "this" {
   has_projects                = var.settings_has_projects
   has_wiki                    = var.settings_has_wiki
   is_template                 = var.settings_is_template
+  allow_update_branch         = var.allow_update_branch
   allow_merge_commit          = var.settings_allow_merge_commit
   allow_squash_merge          = var.settings_allow_squash_merge
   allow_rebase_merge          = var.settings_allow_rebase_merge
@@ -28,29 +29,36 @@ resource "github_repository" "this" {
   archive_on_destroy          = var.settings_archive_on_destroy
   topics                      = var.settings_topics
 
-  security_and_analysis {
-    advanced_security {
-      status = var.settings_security_and_analysis.advanced_security
-    }
-    secret_scanning {
-      status = var.settings_security_and_analysis.secret_scanning
-    }
-    secret_scanning_push_protection {
-      status = var.settings_security_and_analysis.secret_scanning_push_protection
+  dynamic "security_and_analysis" {
+    for_each = var.settings_security_and_analysis != null ? var.settings_security_and_analysis : {}
+
+    content {
+      advanced_security {
+        status = var.settings_security_and_analysis.advanced_security
+      }
+      secret_scanning {
+        status = var.settings_security_and_analysis.secret_scanning
+      }
+      secret_scanning_push_protection {
+        status = var.settings_security_and_analysis.secret_scanning_push_protection
+      }
     }
   }
 
-  pages {
+  dynamic "pages" {
+    for_each = var.settings_pages != null ? [var.settings_pages] : []
 
-    build_type = var.settings_pages.build_type
-    cname      = var.settings_pages.cname
+    content {
+      build_type = pages.build_type
+      cname      = pages.cname
 
-    dynamic "source" {
-      for_each = var.settings_pages.source != null ? var.settings_pages.source : {}
+      dynamic "source" {
+        for_each = var.settings_pages.source != null ? pages.source : {}
 
-      content {
-        branch = var.settings_pages.source.branch
-        path   = var.settings_pages.source.path
+        content {
+          branch = pages.source.branch
+          path   = pages.source.path
+        }
       }
     }
   }
