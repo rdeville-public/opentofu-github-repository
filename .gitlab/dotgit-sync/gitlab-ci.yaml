@@ -66,6 +66,27 @@ Check dotgit-sync Update:
         --set-upstream origin \
         "${DOTGIT_BRANCH}"
     fi
+  - |-
+    if [[ -n "${DOTGIT_UPGRADE}" ]] && ! glab mr list | grep -q "${COMMIT_MESSAGE}"
+    then
+      # If new upgrade push with MR creation
+      # WARNING: DANGEROUS, BE SURE TO PROTECT DEFAULT BRANCHES
+      git push \
+        --force \
+        -o merge_request.create \
+        -o merge_request.title="${COMMIT_MESSAGE}" \
+        --set-upstream origin \
+        "${DOTGIT_BRANCH}"
+    elif glab mr list | grep -q "${COMMIT_MESSAGE}"
+    then
+      # If ugprade push to make up to date
+      # In any case, make sure remote branch is up-to-date
+      # WARNING: DANGEROUS, BE SURE TO PROTECT DEFAULT BRANCHES
+      git push \
+        --force \
+        --set-upstream origin \
+        "${DOTGIT_BRANCH}"
+    fi
   rules:
   - if: $CI_PIPELINE_SOURCE =~ /(parent_pipeline|pipeline)/
   - when: never

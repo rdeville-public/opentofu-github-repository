@@ -1,4 +1,5 @@
 <!-- BEGIN DOTGIT-SYNC BLOCK MANAGED -->
+<!-- markdownlint-disable -->
 # 👋 Welcome to OpenTofu Module Github Repository
 
 <center>
@@ -490,7 +491,7 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://registry.terraform.io/providers/opentofu/github/):
+* [github](https://search.opentofu.org/provider/opentofu/github/):
   `~>6.2`
 
 ### Resources
@@ -1995,7 +1996,8 @@ You can also take a look at the [CONTRIBUTING.md][contributing].
 
 ## 📝 License
 
-Copyright © 2024 [Romain Deville](code@romaindeville.fr)
+Copyright © 2024 - 2025
+ * [Romain Deville \<code@romaindeville.fr\>](code@romaindeville.fr)
 
 This project is under following licenses (**OR**) :
 

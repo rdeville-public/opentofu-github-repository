@@ -31,6 +31,7 @@ Tag and Release:
   - git switch "${CI_DEFAULT_BRANCH}"
   - git remote set-url origin "https://gitlab-ci-token:${DOTGIT_SYNC_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}"
   - semantic-release -c releaserc.toml version
+  - git pull
   rules:
   - if: $CI_PIPELINE_SOURCE =~ /(parent_pipeline|pipeline)/
     when: never
