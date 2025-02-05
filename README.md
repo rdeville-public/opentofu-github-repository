@@ -491,7 +491,7 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://registry.terraform.io/providers/opentofu/github/):
+* [github](https://search.opentofu.org/provider/opentofu/github/):
   `~>6.2`
 
 ### Resources
