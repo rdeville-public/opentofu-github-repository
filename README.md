@@ -491,28 +491,28 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://search.opentofu.org/provider/opentofu/github/):
+* [github](https://search.opentofu.org/provider/integrations/github/):
   `~>6.2`
 
 ### Resources
 
-* [resource.github_actions_organization_secret_repositories.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_secret_repositories)
+* [resource.github_actions_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret_repositories)
   > Allow this repository to access to organization actions secrets
-* [resource.github_actions_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_secret)
+* [resource.github_actions_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret)
   > Manage action secrets of repository
-* [resource.github_actions_variable.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_variable)
+* [resource.github_actions_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable)
   > Manage action variables of repository
-* [resource.github_dependabot_organization_secret_repositories.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/dependabot_organization_secret_repositories)
+* [resource.github_dependabot_organization_secret_repositories.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret_repositories)
   > Allow this repository to access to organization dependabot secrets
-* [resource.github_issue_labels.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/issue_labels)
+* [resource.github_issue_labels.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_labels)
   > Manage issues labels of the repository.
-* [resource.github_repository.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository)
+* [resource.github_repository.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
   > Manage basic settings of a Github repository.
-* [resource.github_repository_collaborators.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_collaborators)
+* [resource.github_repository_collaborators.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborators)
   > Manage collaborators (teams or users) access level to the repository
-* [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_ruleset)
+* [resource.github_repository_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_repository_webhook.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/repository_webhook)
+* [resource.github_repository_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook)
   > Manage repository webhook
 
 <!-- markdownlint-capture -->
